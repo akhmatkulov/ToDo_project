@@ -9,16 +9,20 @@ public class UserService {
 
     private final List<User> users = new ArrayList<>();
 
-    public void add(User user) {
-        if (!has(user)) {
-            users.add(user);
+    public User add(User user) {
+        if (hasUser(user.getUsername())) {
+            return null;
         }
+        users.add(user);
+        return user;
     }
 
-    public boolean has(User user) {
-        for (User user1: users) {
-            if (user1.getUsername().equals(user.getUsername())) {
-                return true;
+    private boolean hasUser(String username) {
+        for (User user : users) {
+            if (user != null) {
+                if (user.getUsername().equals(username)) {
+                    return true;
+                }
             }
         }
         return false;

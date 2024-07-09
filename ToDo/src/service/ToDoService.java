@@ -33,6 +33,26 @@ public class ToDoService {
         }
     }
 
+    public ToDo addTodo(ToDo toDo) {
+        if (hasTodo(toDo.getName())) {
+            return null;
+        }
+        todos.add(toDo);
+        return toDo;
+    }
+
+    private boolean hasTodo(String name) {
+        for (ToDo toDo : todos) {
+            if (toDo != null) {
+                if (toDo.getName().equals(name)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     public List<ToDo> getTodoByUserId(UUID userId){
         List<ToDo> todos1 = new ArrayList<>();
         for(ToDo todo: todos){
