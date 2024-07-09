@@ -8,7 +8,30 @@ import java.util.UUID;
 
 public class ToDoService {
 
-    List<ToDo> todos = new ArrayList<>();
+    private final List<ToDo> todos = new ArrayList<>();
+
+    public void add(ToDo toDo) {
+        if (!has(toDo)) {
+            todos.add(toDo);
+        }
+    }
+
+    private boolean has(ToDo toDo) {
+        for (ToDo toDo1: todos) {
+            if (toDo1.getName().equals(toDo.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void complete(UUID toDoId) {
+        for (ToDo toDo: todos) {
+            if (toDo.getId().equals(toDoId)) {
+                toDo.setComplete(true);
+            }
+        }
+    }
 
     public List<ToDo> getTodoByUserId(UUID userId){
         List<ToDo> todos1 = new ArrayList<>();

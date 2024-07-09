@@ -7,8 +7,12 @@ public class User {
     private String username;
     private String password;
 
-    public User(String username, String password) {
+    public User() {
         this.id = UUID.randomUUID();
+    }
+
+    public User(String username, String password) {
+        this();
         this.username = username;
         this.password = password;
     }
